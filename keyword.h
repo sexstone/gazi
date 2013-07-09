@@ -1,0 +1,5 @@
+namespace gazi {
+	namespace inner{
+		
+	}
+}
