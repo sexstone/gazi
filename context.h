@@ -11,19 +11,13 @@ namespace gazi { namespace inner {
 class context{
 
 public:
-	enum REGISTER{
-		EAX,
-		EBX,
-		ECX,
-		EDX
-	};
 	
 	static  gazi::inner::command* cmd;
 	static  const gazi::inner::command* EIP;
-	static  gazi::inner::map<REGISTER ,char*>* reg;  
+	static  gazi::inner::map<char* ,char*>* reg;  
 	static  gazi::inner::memory* mem;
 	static  gazi::inner::library* lib;
-	static  int scope;
+	static  char* scope;
 	 
 	static bool isinitsuccess;
 

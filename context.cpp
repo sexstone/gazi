@@ -12,10 +12,10 @@
 ENTER_INNER	
 i::command* i::context::cmd = NULL;
 const i::command* i::context::EIP = NULL;
-int i::context::scope  = i::TOP_SCOPE;
+char* i::context::scope  = const_cast<char*>(i::TOP_SCOPE);
 i::memory* i::context::mem  = NULL;
 i::library* i::context::lib = NULL;
-i::map<i::context::REGISTER ,char*>* i::context::reg = NULL;
+i::map<char* ,char*>* i::context::reg = NULL;
 bool i::context::isinitsuccess = false;
 
 
@@ -33,11 +33,11 @@ void i::context::init(){
 
 	EIP = cmd;
 
-	reg = new map<context::REGISTER,char*>();
-	reg->insert(EAX,"");
-	reg->insert(EBX,"");
-	reg->insert(ECX,"");
-	reg->insert(EDX,"");
+	reg = new map<char* ,char*>();
+	reg->insert("EAX",NULL);
+	reg->insert("EBX",NULL);
+	reg->insert("ECX",NULL);
+	reg->insert("EDX",NULL);
 
 	isinitsuccess = true;
 
@@ -77,7 +77,7 @@ void i::context::nextscope(){
 }
 
 void i::context::prescope(){
-	if(scope == 1)  return ;
+	if(strcmp(scope,"0")==0)  return ;
 	scope--;
 }
 

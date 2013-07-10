@@ -13,15 +13,15 @@ namespace gazi {
 			~memory(){};
 
 			void init();
-			void addscope(const int scope);
-			const char* getvalue(const int scope,const char* key);
-			void setvalue(const int scope,const char* key ,const char*value);
-			void erasescope(const int scope);
+			void addscope(const char* scope);
+			const char* getvalue(const char* scope,const char* key);
+			void setvalue(const char* scope,const char* key ,const char*value);
+			void erasescope(const char* scope);
 			void destroy();
 			//friend const char[] String(const char*);
 
 		private:
-			gazi::inner::map<int,map<char*,char*>*>* map_;
+			gazi::inner::map<char*,map<char*,char*>*>* map_;
 			void operator=(const memory&);
 			gazi::inner::memory(const memory&);
 		};

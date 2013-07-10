@@ -6,7 +6,14 @@
 
 namespace gazi { namespace inner {
 
-template<typename K ,typename V , typename J = std::map<K,V >>
+
+struct compare{
+    bool operator()( const char* s1, const char* s2 ) const{
+        return strcmp( s1, s2 ) < 0;
+    }
+};
+
+template<typename K ,typename V , typename J = std::map<K,V,compare>>
 class map {
 
 public:
@@ -47,7 +54,7 @@ public:
 	}
 
 	int size(){
-		return static_cast <int>(map_->size());
+		return static_cast<int>(map_->size());
 	}
 
 private :

@@ -13,11 +13,12 @@
 #endif
 
 #define MAX_VARNAME_LENGTH 100
+#define MAX_VARVALUE_LENGTH 100
 #define MAX_INST_LENGTH 100
 #define ENTER_INNER
 
 namespace gazi{namespace inner {
-	static const int TOP_SCOPE = 0 ;
+	static const char* TOP_SCOPE = "0" ;
 
 }}
 

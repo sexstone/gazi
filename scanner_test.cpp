@@ -12,11 +12,10 @@
 
 
 void Testscanner(){
-	const char* str  = "mov @var1 [i love you!]  mov @var2 @var1  mov EAX @va1" ;  
+	const char* str  = "mov @var1 [i love you!]  mov @var2 @var1  mov  EAX @var1";  
 	gazi::executer e;
 	e.read(str);
 	e.execute();
-
 };
 
 

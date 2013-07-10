@@ -7,9 +7,12 @@ namespace gazi {
 	namespace inner{
 		class plugin{
 		public:
+			virtual ~plugin(){};
 			virtual const char* pluginname() = 0;
 			virtual void init() = 0;
 			virtual void invoke(const char*) = 0;
+		protected:
+			plugin(){};
 		};
 
 		class base32:public plugin{
@@ -26,10 +29,14 @@ namespace gazi {
 
 		private:
 			inline bool isready();
-		
-			inline void regtovar();
-			inline void vartovar();
-			inline void insttovar();
+			
+			//mov cmd
+			void regtovar();
+			void vartovar();
+			void insttovar();
+			void regtoreg();
+			void vartoreg();
+			void insttoreg();
 
 			void operator=(const gazi::inner::base32 &) ;
 			gazi::inner::base32(const gazi::inner::base32 &);

@@ -27,16 +27,15 @@ void gazi::executer::execute(){
 
 #ifdef _DEBUG_
 		printf("CMD:[%d]\n" , i_debug_); 
-		printf("  EAX:%s" , i::context::reg->find(i::context::EAX)); 
-		printf("  EBX:%s" , i::context::reg->find(i::context::EBX)); 
-		printf("  ECX:%s" , i::context::reg->find(i::context::ECX));
+		printf("  EAX:%s" , i::context::reg->find("EAX")); 
+		printf("  EBX:%s" , i::context::reg->find("EBX")); 
+		printf("  ECX:%s" , i::context::reg->find("ECX"));
 		if(i::context::EIP->totype == i::TYPE_VAR){
-			printf("  EDX:%s" , i::context::reg->find(i::context::EDX));
+			printf("  EDX:%s" , i::context::reg->find("EDX"));
 			printf("  %s:%s\n",i::context::EIP->to,i::context::mem->getvalue(i::context::scope, i::context::EIP->to));
 		}else{
-			printf("  EDX:%s\n" , i::context::reg->find(i::context::EDX));
+			printf("  EDX:%s\n" , i::context::reg->find("EDX"));
 		}
-
 		i_debug_++;
 #endif
 		const i::command* t_ = i::context::EIP->next;
