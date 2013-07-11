@@ -88,7 +88,9 @@ inline void i::base32::insttovar(){
 		if(strcmp(context::mem->getvalue(context::scope,context::EIP->to),context::EIP->from)==0) return ;
 	}
 	char* value = i::heap::mallocvalue(context::EIP->from);
-	i::heap::freevalue(context::mem->getvalue(context::scope,context::EIP->to));
+	if(oldvalue != NULL){
+		i::heap::freevalue(oldvalue);
+	}
 	context::mem->setvalue(context::scope,context::EIP->to,value);
 
 }
@@ -137,7 +139,7 @@ void i::base32::insttoreg(){
 }
 
 void i::base32::vartoreg(){
-	if(context::EIP->totype  == i::TYPE_REG_EBX ){
+	if(context::EIP->totype  == i::TYPE_REG_EAX ){
 		const char* fromvalue = i::context::mem->getvalue(i::context::scope, i::context::EIP->from);
 		if(context::reg->find("EAX") != NULL){
 			if(strcmp(fromvalue,context::reg->find("EAX")) == 0) return;
@@ -184,7 +186,151 @@ void i::base32::vartoreg(){
 }
 
 void i::base32::regtoreg(){
-	const char* from_value =  i::context::mem->getvalue(i::context::scope, i::context::EIP->from);
-	i::context::mem->setvalue(const_cast<char*>(i::context::scope),i::context::EIP->to,from_value);
+
+	if(context::EIP->totype  == i::TYPE_REG_EAX ){
+		if(context::EIP->fromtype  == i::TYPE_REG_EBX){
+			const char* oldvalue = context::reg->find("EAX");
+			const char* from_value_ = context::reg->find("EBX");
+			if(from_value_ != NULL&&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("EAX",value);
+		}
+		if(context::EIP->fromtype  == i::TYPE_REG_ECX){
+			const char* oldvalue = context::reg->find("EAX");
+			const char* from_value_ = context::reg->find("ECX");
+			if(from_value_ != NULL&&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("EAX",value);
+		}
+		if(context::EIP->fromtype  == i::TYPE_REG_EDX){
+			const char* oldvalue = context::reg->find("EAX");
+			const char* from_value_ = context::reg->find("EDX");
+			if(from_value_ != NULL&&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("EAX",value);
+		}
+	}
+
+
+	if(context::EIP->totype  == i::TYPE_REG_EBX ){
+		if(context::EIP->fromtype  == i::TYPE_REG_EAX){
+			const char* oldvalue = context::reg->find("EBX");
+			const char* from_value_ = context::reg->find("EAX");
+			if(from_value_ != NULL  &&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("EBX",value);
+		}
+		if(context::EIP->fromtype  == i::TYPE_REG_ECX){
+			const char* oldvalue = context::reg->find("EBX");
+			const char* from_value_ = context::reg->find("ECX");
+			if(from_value_ != NULL&&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("EBX",value);
+		}
+		if(context::EIP->fromtype  == i::TYPE_REG_EDX){
+			const char* oldvalue = context::reg->find("EBX");
+			const char* from_value_ = context::reg->find("EDX");
+			if(from_value_ != NULL&&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("EBX",value);
+		}
+		
+	}
+
+	if(context::EIP->totype  == i::TYPE_REG_ECX ){
+		if(context::EIP->fromtype  == i::TYPE_REG_EAX){
+			const char* oldvalue = context::reg->find("ECX");
+			const char* from_value_ = context::reg->find("EAX");
+			if(from_value_ != NULL  &&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("ECX",value);
+		}
+		if(context::EIP->fromtype  == i::TYPE_REG_EBX){
+			const char* oldvalue = context::reg->find("ECX");
+			const char* from_value_ = context::reg->find("EBX");
+			if(from_value_ != NULL  &&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("ECX",value);
+		}
+		if(context::EIP->fromtype  == i::TYPE_REG_EDX){
+			const char* oldvalue = context::reg->find("ECX");
+			const char* from_value_ = context::reg->find("EDX");
+			if(from_value_ != NULL  &&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("ECX",value);
+		}
+	}
+
+	if(context::EIP->totype  == i::TYPE_REG_EDX ){
+		if(context::EIP->fromtype  == i::TYPE_REG_EAX){
+			const char* oldvalue = context::reg->find("EDX");
+			const char* from_value_ = context::reg->find("EAX");
+			if(from_value_ != NULL  &&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("EDX",value);
+		}
+		if(context::EIP->fromtype  == i::TYPE_REG_EBX){
+			const char* oldvalue = context::reg->find("EDX");
+			const char* from_value_ = context::reg->find("EBX");
+			if(from_value_ != NULL  &&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("EDX",value);
+		}
+		if(context::EIP->fromtype  == i::TYPE_REG_ECX){
+			const char* oldvalue = context::reg->find("EDX");
+			const char* from_value_ = context::reg->find("ECX");
+			if(from_value_ != NULL  &&  oldvalue !=NULL){
+				if(strcmp(from_value_,oldvalue) == 0) return;
+			}
+			i::heap::freevalue(oldvalue);
+
+			char* value = i::heap::mallocvalue(from_value_);
+			context::reg->insert("EDX",value);
+		}
+	}
 }
 

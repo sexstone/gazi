@@ -47,11 +47,13 @@ void i::scanner::scan(){
 			}
 		}
 	}
-	LOG("Scan","É¨ÃèÍê³É");
+	LOG("GaZi","scanning is completed.");
 #ifdef _DEBUG_
 	int i_debug_ = 0;
 	const command* temp = i::context::EIP ;
-	printf("=============code============\n" ); 
+	LOG("","******************************");
+	LOG("","***      formating code    ***");
+	LOG("","******************************"); 
 	while(context::EIP != NULL &&  i::context::EIP->next != NULL){
 		
 		printf("CMD:[%d]\n" , i_debug_); 

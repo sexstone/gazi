@@ -18,7 +18,9 @@ void gazi::executer::read(const char* str){
 void gazi::executer::execute(){
 	int i_debug_  = 0 ;
 #ifdef _DEBUG_
-	printf("=============runtime info============\n" );
+	LOG("","******************************");
+	LOG("","***      runtime info      ***");
+	LOG("","******************************"); 
 #endif
 	while(i::context::EIP != NULL &&  i::context::EIP->next != NULL){	
 		const char* cmdname = i::context::EIP->name;

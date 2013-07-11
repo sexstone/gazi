@@ -20,6 +20,11 @@ bool i::context::isinitsuccess = false;
 
 
 void i::context::init(){
+	LOG("","******************************");
+	LOG("","*      GAZI  v0.01           *");
+	LOG("","*    xcan.zhu@gmail.com      *");
+	LOG("","******************************");
+
 	cmd = new command;
 	cmd->init();
 
@@ -41,7 +46,7 @@ void i::context::init(){
 
 	isinitsuccess = true;
 
-	LOG("Context","初始化成功");
+	LOG("GaZi","context is initialized.");
 }
 
 void i::context::addplugin(i::plugin* p){
@@ -57,7 +62,7 @@ loop:
 		lib_temp->init();
 		iter->next = lib_temp;
 
-		LOG(name, "基础库安装完成");
+		LOG(name, "base library is setted up.");
 		
 	}else{
 		if(iter->next != NULL){
